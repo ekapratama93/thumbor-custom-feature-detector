@@ -1,0 +1,2 @@
+thumbor>=7.0.0a1
+opencv-python-headless>=4.2.0
