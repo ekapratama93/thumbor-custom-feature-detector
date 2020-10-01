@@ -4,6 +4,9 @@
 
 This is a thumbor extension enabling a custom algorithm for feature detection. For comparison between algorithm, you can read this [paper](https://ieeexplore.ieee.org/document/8346440) or this [stackoverflow answer](https://stackoverflow.com/questions/49963061/what-is-the-best-feature-detection/56901836#56901836). You can compare it yourself using provided [Jupyter Notebook](FeatureDetection.ipynb).
 
+This library only works with Thumbor >=7.0.0a1 and Python >=3.6.
+Tested using Thumbor 7.0.0a5 and Python 3.6
+
 ## Configuration
 
 You can control which algorithm is used by using `CUSTOM_FEATURE_DETECTOR_ALGORITHM`. The supported algorithm is:
