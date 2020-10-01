@@ -27,18 +27,18 @@ class Detector(BaseDetector):
             return await self.next()
 
         mode = 'ORB'
-        if self.context.config.CUSTOM_FEATURE_DETECTOR_ALGORITHM:
+        if hasattr(self.context.config, 'CUSTOM_FEATURE_DETECTOR_ALGORITHM'):
             mode = self.context.config.CUSTOM_FEATURE_DETECTOR_ALGORITHM\
                     .upper()
 
         max_feature = 20
-        if self.context.config.CUSTOM_FEATURE_DETECTOR_MAX_FEATURE:
+        if hasattr(self.context.config, 'CUSTOM_FEATURE_DETECTOR_MAX_FEATURE'):
             max_feature = int(
                 self.context.config.CUSTOM_FEATURE_DETECTOR_MAX_FEATURE
             )
 
         threshold = 100
-        if self.context.config.CUSTOM_FEATURE_DETECTOR_THRESHOLD:
+        if hasattr(self.context.config, 'CUSTOM_FEATURE_DETECTOR_THRESHOLD'):
             threshold = int(
                 self.context.config.CUSTOM_FEATURE_DETECTOR_THRESHOLD
             )
