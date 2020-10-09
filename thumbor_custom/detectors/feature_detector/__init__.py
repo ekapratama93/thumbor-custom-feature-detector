@@ -8,6 +8,8 @@
 import cv2
 import numpy as np
 
+from itertools import repeat
+from random import choice
 from thumbor.detectors import BaseDetector
 from thumbor.point import FocalPoint
 from thumbor.utils import logger
@@ -43,6 +45,12 @@ class Detector(BaseDetector):
                 self.context.config.CUSTOM_FEATURE_DETECTOR_THRESHOLD
             )
 
+        randomize = False
+        if hasattr(self.context.config, 'CUSTOM_FEATURE_DETECTOR_RANDOMIZE_DETECTION'):
+            randomize = \
+                self.context.config.CUSTOM_FEATURE_DETECTOR_RANDOMIZE_DETECTION.\
+                    upper() == 'TRUE'
+
         # default ORB detector
         detector = None
         if mode == 'FAST':
@@ -67,6 +75,15 @@ class Detector(BaseDetector):
             return await self.next()
 
         points = cv2.KeyPoint_convert(keypoints)
+        if mode in ('FAST', 'AGAST', 'AKAZE', 'BRISK'):
+            detected = []
+            if len(points) > 0:
+                if randomize:
+                    for _ in repeat(None, max_feature):
+                        detected.append(choice(points))
+                else:
+                    detected = points[:max_feature]
+            points = detected
 
         if points is not None:
             for point in points:

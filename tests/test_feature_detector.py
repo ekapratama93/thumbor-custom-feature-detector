@@ -112,6 +112,35 @@ class FeatureDetectorTestCase(DetectorTestCase):
         expect(detection_result[0].origin).to_equal("alignment")
 
     @gen_test
+    async def test_should_use_fast_and_limited_detection(self):
+        with open(abspath("./tests/fixtures/images/city.jpg"), "rb") as fixt:
+            self.engine.load(fixt.read(), None)
+        ctx = self.context
+        ctx.config.CUSTOM_FEATURE_DETECTOR_ALGORITHM = 'fast'
+        ctx.config.CUSTOM_FEATURE_DETECTOR_MAX_FEATURE = 5
+        await FeatureDetector(ctx, 0, None).detect()
+        detection_result = self.context.request.focal_points
+        expect(detection_result).to_length(5)
+        expect(detection_result[0].origin).to_equal("alignment")
+
+    @gen_test
+    async def test_should_use_fast_and_limited_detection_with_random(self):
+        with open(abspath("./tests/fixtures/images/city.jpg"), "rb") as fixt:
+            self.engine.load(fixt.read(), None)
+        ctx = self.context
+        ctx.config.CUSTOM_FEATURE_DETECTOR_ALGORITHM = 'fast'
+        ctx.config.CUSTOM_FEATURE_DETECTOR_MAX_FEATURE = 5
+        ctx.config.CUSTOM_FEATURE_DETECTOR_RANDOMIZE_DETECTION = 'True'
+        await FeatureDetector(ctx, 0, None).detect()
+        detection_result = self.context.request.focal_points
+        self.context.request.focal_points = []
+        await FeatureDetector(ctx, 0, None).detect()
+        detection_result_2 = self.context.request.focal_points
+        expect(detection_result).to_length(5)
+        expect(detection_result_2).to_length(5)
+        expect(detection_result).not_to_be_like(detection_result_2)
+
+    @gen_test
     async def test_should_use_fast_and_no_detection(self):
         with open(abspath("./tests/fixtures/images/city.jpg"), "rb") as fixt:
             self.engine.load(fixt.read(), None)
