@@ -21,3 +21,19 @@ You can control which algorithm is used by using `CUSTOM_FEATURE_DETECTOR_ALGORI
 *Some articles say that SIFT is patent protected so be careful about using it for your business setup
 
 Some algorithms also use threshold and max number of features you can control both using `CUSTOM_FEATURE_DETECTOR_THRESHOLD` and `CUSTOM_FEATURE_DETECTOR_MAX_FEATURE`.
+
+### Randomize detections
+
+In some threshold based algorithm, it might detects a lot of features. You can randomize which feature get selected using `CUSTOM_FEATURE_DETECTOR_RANDOMIZE_DETECTION`. The default behaviour is to select first 20 features detected. Beware that randomize the detection is not deterministic, which means that it might get different result on each processing. You might want to cache the detection result.
+
+### Config file
+
+```python
+CUSTOM_FEATURE_DETECTOR_ALGORITHM = 'ORB'
+CUSTOM_FEATURE_DETECTOR_THRESHOLD = '100'
+CUSTOM_FEATURE_DETECTOR_MAX_FEATURE= '20'
+
+CUSTOM_FEATURE_DETECTOR_RANDOMIZE_DETECTION = 'False'
+
+DETECTORS = ['thumbor_custom.detectors.feature_detector',]
+```
