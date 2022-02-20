@@ -89,8 +89,7 @@ class Detector(BaseDetector):
             detected = []
             if len(points) > 0:
                 if randomize:
-                    for _ in repeat(None, max_feature):
-                        detected.append(choice(points))
+                    detected.extend(choice(points) for _ in repeat(None, max_feature))
                 else:
                     detected = points[:max_feature]
             points = detected
