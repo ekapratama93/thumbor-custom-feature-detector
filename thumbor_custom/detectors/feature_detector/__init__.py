@@ -5,8 +5,11 @@
 # http://www.opensource.org/licenses/mit-license
 # Copyright (c) 2020 Eka Cahya Pratama <ekapratama93@gmail.com>
 
-import cv2
-import numpy as np
+try:
+    import cv2
+    import numpy as np
+except ImportError:
+    pass
 
 from itertools import repeat
 from random import choice
@@ -17,6 +20,11 @@ from thumbor.utils import logger
 
 class Detector(BaseDetector):
     async def detect(self):
+        if not self.verify_cv():
+            await self.next()
+
+            return
+
         engine = self.context.modules.engine
         try:
             img = np.copy(
@@ -25,8 +33,10 @@ class Detector(BaseDetector):
         except Exception as error:
             logger.exception(error)
             logger.warning(
-                "Error during feature detection; skipping to next detector")
-            return await self.next()
+                "Error during feature detection; skipping to next detector"
+            )
+
+            return await self.next() # pylint: disable=not-callable
 
         mode = 'ORB'
         if hasattr(self.context.config, 'CUSTOM_FEATURE_DETECTOR_ALGORITHM'):
