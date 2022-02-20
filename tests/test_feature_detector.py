@@ -12,6 +12,7 @@ from preggy import expect
 from tornado.testing import gen_test
 
 from thumbor.config import Config
+from thumbor.detectors import BaseDetector
 from thumbor.engines.pil import Engine as PilEngine
 from thumbor.testing import DetectorTestCase
 from thumbor_custom.detectors.feature_detector \
@@ -216,3 +217,16 @@ class FeatureDetectorTestCase(DetectorTestCase):
         detection_result = self.context.request.focal_points
         expect(len(detection_result)).to_be_greater_than(1)
         expect(detection_result[0].origin).to_equal("alignment")
+
+    @gen_test
+    async def test_should_skip_if_opencv_not_found(self):
+        with open(abspath("./tests/fixtures/images/city.jpg"), "rb") as fixt:
+            self.engine.load(fixt.read(), None)
+
+        with mock.patch.object(
+            BaseDetector, "verify_cv", lambda self: False
+        ):
+            await FeatureDetector(self.context, 0, None).detect()
+
+        detection_result = self.context.request.focal_points
+        expect(detection_result).to_length(0)
