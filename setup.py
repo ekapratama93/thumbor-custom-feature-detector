@@ -42,6 +42,6 @@ setup(
     ],
     install_requires=[
         'thumbor>=7.0.0,<8.0.0',
-        "opencv-python-headless==4.*,>=4.2.0,",
+        "opencv-python-headless==4.*,>=4.2.0",
     ]
 )
