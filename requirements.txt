@@ -1,2 +1,2 @@
-thumbor>=7.0.0
-opencv-python-headless>=4.2.0
+thumbor==7.0.10
+opencv-python-headless==4.6.0.66
