@@ -11,9 +11,13 @@ jobs:
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python-version }}
     steps:
-    - uses: actions/checkout@v2
+    - name: Harden Runner
+      uses: step-security/harden-runner@v1
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+    - uses: actions/checkout@v3
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install pycurl requirement
@@ -26,7 +30,7 @@ jobs:
       run: |
         make test
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v3
       with:
         file: ./coverage.xml
         directory: ./
@@ -35,3 +39,5 @@ jobs:
         name: codecov-umbrella
         fail_ci_if_error: true
         path_to_write_report: ./.github/codecov_report.gz
+permissions:
+  contents: read
