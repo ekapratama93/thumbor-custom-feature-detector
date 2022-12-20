@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d68c98060888f1f14edaa5dd31f83d04c2f556cfb6d6485eab09c68166105b45"
+            "sha256": "1434363cb9d58af52e3149b82f6ec14be860eec85b2dd94efc017a9d6af0db4c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -69,7 +69,7 @@
                 "sha256:f9168790149f917ad8e3cf5047b353fefef753bd50b07c547da0bdf30bc15d91",
                 "sha256:fe44e925c68fb5e8db1334bf30ac1a1b6b963b932a19cf41d2e899cf02f36aab"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_version >= '3.8'",
             "version": "==1.24.0"
         },
         "opencv-python-headless": {
@@ -84,6 +84,14 @@
             ],
             "index": "pypi",
             "version": "==4.6.0.66"
+        },
+        "piexif": {
+            "hashes": [
+                "sha256:3bc435d171720150b81b15d27e05e54b8abbde7b4242cddd81ef160d283108b6",
+                "sha256:83cb35c606bf3a1ea1a8f0a25cb42cf17e24353fd82e87ae3884e74a302a5f1b"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
+            "version": "==1.1.3"
         },
         "pillow": {
             "hashes": [
@@ -177,10 +185,19 @@
         },
         "thumbor": {
             "hashes": [
-                "sha256:1dbd73bd6a024a7dc3a68c52cc7184f2aee5889bf447500bfab95cc5df8b90d1"
+                "sha256:236502c3d900327e2046742da7be5ea7dfbc01f39c43bce3fba59bf40ef554c7",
+                "sha256:2ca40523f215354c597575f77d3a2aa704c49a29b70b96b3188fb2f44cc3ccb7",
+                "sha256:33a3fdc1942ae614db0d148abed8e15967158dfe18015dadd705d19975a58d2c",
+                "sha256:35bba99a8c97c81377b6097c982ad80bbcfc25060c21e377dfb271c5439ed31d",
+                "sha256:3c46379531c52ba9ee0a996ef9d1c1389f96643b299e6083363cf853efbc3721",
+                "sha256:3c9e51bfa14386dc15a6d7055552a4619e0672d0c629720b65346889123f32bd",
+                "sha256:40a3fd85203550142c394461b463be7e127e497340c01f3ed13bbe30e8e14084",
+                "sha256:8ebc3d73e32feaa45c982059553726eb2830f7c5851a86ecaa01d03de667d3a7",
+                "sha256:8f207e6602da539d319e39386baa137d3572cb82540b7234aded2538d706e5a1",
+                "sha256:ea8b90b4716b838439b7b6a0522b2ae31d59333456809df96898428197d885b6"
             ],
             "index": "pypi",
-            "version": "==7.3.0"
+            "version": "==7.4.0"
         },
         "thumbor-plugins-gifv": {
             "hashes": [
@@ -480,7 +497,7 @@
                 "sha256:f9168790149f917ad8e3cf5047b353fefef753bd50b07c547da0bdf30bc15d91",
                 "sha256:fe44e925c68fb5e8db1334bf30ac1a1b6b963b932a19cf41d2e899cf02f36aab"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_version >= '3.8'",
             "version": "==1.24.0"
         },
         "packaging": {
