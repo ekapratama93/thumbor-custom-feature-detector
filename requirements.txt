@@ -1,2 +1,2 @@
-thumbor==7.4.6
+thumbor==7.4.7
 opencv-python-headless==4.7.0.68
