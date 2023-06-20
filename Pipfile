@@ -16,7 +16,7 @@ pyssim = ">=0.4.0,<1.0.0"
 pyre-check = "*"
 
 [packages]
-thumbor = "==7.5.0"
+thumbor = "==7.5.1"
 opencv-python-headless = "==4.7.0.72"
 pytz = "*"
 
