@@ -17,7 +17,7 @@ pyre-check = "*"
 
 [packages]
 thumbor = "==7.5.2"
-opencv-python-headless = "==4.8.0.74"
+opencv-python-headless = "==4.8.0.76"
 pytz = "*"
 
 [requires]
